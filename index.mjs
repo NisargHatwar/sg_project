@@ -114,7 +114,8 @@ app.post("/recloser/api", async (req, res) => {
     const faults = await readData("faults.json");
     const fault_type = permanent_fault ? "Permenant" : "Temporary";
     const time = new Date();
-    const data = { fault_type, reclose_attempts, time, voltage };
+    const updated_attempts = reclose_attempts - 1;
+    const data = { fault_type, reclose_attempts : updated_attempts , time, voltage };
     faults.push(data);
     await writeData("faults.json", faults);
   }
