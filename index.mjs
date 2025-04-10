@@ -147,7 +147,7 @@ app.get("/api/user/:user", async (req, res) => {
     }
   }
   // send the switch data as json response
-  res.status(200).json(sw.states);
+  res.status(200).json(arr);
 });
 
 app.get("/admin/:sessionID/faults", async (req, res) => {
