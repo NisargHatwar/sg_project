@@ -137,9 +137,15 @@ app.get("/api/user/:user", async (req, res) => {
       message: "User not found",
     });
   }
-  // In sw.states, 1 is off and 2 is on
-  // convert 1 to 0 and 2 to 1
-  sw.states = sw.states.map((state) => (state === 1 ? 2 : 1));
+  // sw.states = sw.states.map((state) => (state === 1 ? 2 : 1));
+  const arr = [];
+  for(let i = 0; i < 7; i++){
+    if(sw.states[i]){
+      arr.push(2);
+    }else{
+      arr.push(1);
+    }
+  }
   // send the switch data as json response
   res.status(200).json(sw.states);
 });
