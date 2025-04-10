@@ -132,14 +132,14 @@ app.get("/api/user/:user", async (req, res) => {
   const switchData = await readData("switches.json");
   const sw = switchData.find((sw) => sw.username == user);
   if (!sw) {
-    return res.status(401).render("error.ejs", {
-      status: 401,
-      message: "Invalid session",
+    return res.status(404).render("error.ejs", {
+      status: 404,
+      message: "User not found",
     });
   }
   // In sw.states, 1 is off and 2 is on
   // convert 1 to 0 and 2 to 1
-  sw.states = sw.states.map((state) => (state === 1 ? 0 : 1));
+  sw.states = sw.states.map((state) => (state === 1 ? 2 : 1));
   // send the switch data as json response
   res.status(200).json(sw.states);
 });
